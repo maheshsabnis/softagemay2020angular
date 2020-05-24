@@ -102,3 +102,18 @@
          1. contains dev/test/production env. settings. Default is dev. env.
       6. assets
          1. contains image files, other icon files
+
+======================================================================
+The ng serve command will create d dev. build and host the application on portn 4200
+
+1. runtime.js
+   1. Contains all runtime code for the angular app in browser
+      1. Useing webpack to manage all angular dependencies
+2. polyfills.js
+   1. Contains Zone.js settings and tslib presets for execuing the resultant js code of angular app in browser
+3. styles.js
+   1. Contains js objects for all css files (internal or external)
+4. vendor.js
+   1. Contains js tranpilation of all standard angular modules e.g. @angular/core, @angular/forms, ect.
+5. main.js
+   1. The angular application code written by the developer
