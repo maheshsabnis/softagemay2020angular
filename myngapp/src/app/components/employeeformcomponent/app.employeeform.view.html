@@ -1,0 +1,43 @@
+<div class="container">
+    <form name="frmEmp">
+        <div class="form-group">
+            <label>EmpNo</label>
+            <input type="text" class="form-control" name="EmpNo" [(ngModel)]="emp.EmpNo">
+        </div>
+        <div class="form-group">
+            <label>EmpName</label>
+            <input type="text" class="form-control" name="EmpName" [(ngModel)]="emp.EmpName">
+        </div>
+        <div class="form-group">
+            <label>DeptName</label>
+            <select class="form-control" name="DeptName" [(ngModel)]="emp.DeptName">
+        <!--Use *ngFor to generate options-->
+        <option *ngFor="let d of depts" value="{{d}}">{{d}}</option>
+      </select>
+        </div>
+        <div class="form-group">
+            <label>Salary</label>
+            <input type="text" class="form-control" name="Salary" [(ngModel)]="emp.Salary">
+        </div>
+        <div class="form-group">
+            <input type="button" value="New" (click)="clear()" class="btn btn-warning">
+            <input type="button" value="Save" (click)="save()" class="btn btn-success">
+        </div>
+    </form>
+</div>
+<br>
+<div class="container">
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th *ngFor="let h of headers">{{h}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of emps" (click)="getSelectedEmployee(e)">
+                <!--Genarate each cell for the property of Employee class-->
+                <td *ngFor="let h of headers">{{e[h]}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

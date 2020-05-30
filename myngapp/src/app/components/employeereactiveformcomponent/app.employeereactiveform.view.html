@@ -1,0 +1,83 @@
+<h1>Reactive Form</h1>
+<div class="container">
+    <!--Map the FormGroup to the [fromGroup] directive of <form> tag-->
+    <form name="frmEmp" [formGroup]="frmEmp" (ngSubmit)="save()">
+        <div class="form-group">
+            <label>EmpNo</label>
+            <input type="text" class="form-control" name="EmpNo" formControlName="EmpNo">
+            <!--Display All Validation Error Messages
+             check if the data entered is invalid
+              <formGroup>.controls.<formControlName>.dirty, this means that control is changed
+              <formGroup>.controls.<formControlName>.invalid OR    value is invalid
+              !<formGroup>.controls.<formControlName>.valid
+            -->
+            <div class="alert alert-danger" *ngIf="frmEmp.controls.EmpNo.dirty && !frmEmp.controls.EmpNo.valid">
+                <!--Display Validation Error Messages based in condition
+                     <formGroup>.controls.<formControlName>.errors.<validationtype>
+                      e.g
+                       frmEmp.controls.EmpNo.errors.required
+                -->
+                <p *ngIf="frmEmp.controls.EmpNo.errors.required">EmpNo is Required</p>
+                <p *ngIf="frmEmp.controls.EmpNo.errors.minlength">EmpNo must be 2 digits minimum</p>
+                <p *ngIf="frmEmp.controls.EmpNo.errors.maxlength">EmpNo must be 5 digits maximum</p>
+                <p *ngIf="frmEmp.controls.EmpNo.errors.pattern">EmpNo must be positive numeric</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>EmpName</label>
+            <input type="text" class="form-control" name="EmpName" formControlName="EmpName">
+        </div>
+        <div class="form-group">
+            <label>DeptName</label>
+            <select class="form-control" name="DeptName" formControlName="DeptName">
+        <!--Use *ngFor to generate options-->
+        <option *ngFor="let d of depts" value="{{d}}">{{d}}</option>
+      </select>
+        </div>
+        <div class="form-group">
+            <label>Salary</label>
+            <input type="text" class="form-control" name="Salary" formControlName="Salary">
+            <div class="alert alert-danger" *ngIf="frmEmp.controls.Salary.dirty && !frmEmp.controls.Salary.valid">
+                <p *ngIf="!frmEmp.controls.Salary.errors.positive">
+                    Salary must be positive
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="button" value="New" (click)="clear()" class="btn btn-warning">
+            <!-- <input type="button" value="Save" (click)="save()" class="btn btn-success"> -->
+            <input type="submit" [disabled]="!frmEmp.valid" value="Save" class="btn btn-success">
+        </div>
+    </form>
+</div>
+<br>
+<div class="container">
+    <!--DataSource is Input decorated proeprty in TableDirectiveComponent
+    that why it is used for ProeprtyBinding
+    rowClick is an Output decorated EventEmitter in  TableDirectiveComponent
+    the value emitted by this event must be subscribed by parent (current) component
+    and value will be read using $event object
+  -->
+    <app-table-directive-component [DataSource]="emps" (rowClick)="getSelectectedData($event)">
+    </app-table-directive-component>
+</div>
+<!-- <div class="container">
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr> -->
+<!-- <th>EmpNo</th><th>EmpName</th><th>DeptName</th><th>Salary</th> -->
+<!-- <th *ngFor="let h of headers">{{h}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of emps" (click)="getSelectedEmployee(e)"> -->
+<!-- <td>{{e.EmpNo}}</td>
+                <td>{{e.EmpName}}</td>
+                <td>{{e.DeptName}}</td>
+                <td>{{e.Salary}}</td> -->
+<!--Genarate each cell for the property of Employee class-->
+<!-- <td *ngFor="let h of headers">{{e[h]}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->

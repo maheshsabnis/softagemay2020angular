@@ -1,0 +1,13 @@
+<h3>The Dynamic Table</h3>
+<table class="table table-bordered table-striped table-danger">
+    <thead>
+        <tr>
+            <th *ngFor="let h of headers">{{h}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of DataSource" (click)="onrowClick(d)">
+            <td *ngFor="let h of headers">{{d[h]}}</td>
+        </tr>
+    </tbody>
+</table>

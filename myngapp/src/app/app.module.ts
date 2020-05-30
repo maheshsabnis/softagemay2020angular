@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // Import FormsModule for Two-Way binding
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EmployeeFormComponent } from './components/employeeformcomponent/app.employeeform.component';
+import { EmployeeReactiveFormComponent } from './components/employeereactiveformcomponent/app.employeeform.component';
+import { TableDirectiveComponent } from './directives/app.table.component.directive';
 
 // NgModule --> The decorator class for Angular Module with following
 // properties
@@ -24,13 +27,15 @@ import { AppComponent } from './app.component';
 // to exposed to other JavaScript applications
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, EmployeeFormComponent,
+    EmployeeReactiveFormComponent,
+    TableDirectiveComponent
   ],
   imports: [
-    BrowserModule, FormsModule,
+    BrowserModule, FormsModule, ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [EmployeeReactiveFormComponent]
 })
 export class AppModule { }
