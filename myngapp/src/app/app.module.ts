@@ -2,11 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // Import FormsModule for Two-Way binding
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+// Import HttpClientModule to provide HTTP Object model for
+// the current application.
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeFormComponent } from './components/employeeformcomponent/app.employeeform.component';
 import { EmployeeReactiveFormComponent } from './components/employeereactiveformcomponent/app.employeeform.component';
 import { TableDirectiveComponent } from './directives/app.table.component.directive';
+import { DeptSenderComponent } from './components/masterdetailscommunication/app.deptsender.component';
+import { EmpReceiverComponent } from './components/masterdetailscommunication/app.empreceiver.component';
+import { HttpServiceComponent } from './components/httpservicecomponent/app.httpservice.component';
 
 // NgModule --> The decorator class for Angular Module with following
 // properties
@@ -29,13 +35,16 @@ import { TableDirectiveComponent } from './directives/app.table.component.direct
   declarations: [
     AppComponent, EmployeeFormComponent,
     EmployeeReactiveFormComponent,
-    TableDirectiveComponent
+    TableDirectiveComponent,
+    DeptSenderComponent, EmpReceiverComponent,
+    HttpServiceComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [EmployeeReactiveFormComponent]
+  bootstrap: [HttpServiceComponent]
 })
 export class AppModule { }

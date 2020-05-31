@@ -118,65 +118,105 @@ The ng serve command will create d dev. build and host the application on port 4
 5. main.js
    1. The angular application code written by the developer
 
-======================================================================================
-======================================
+# ======================================================================================
 
 Angular Forms
+
 1. If using <form> tag on HTML then each editable element inside <form> tag must have 'name' attribute, the <form> tag will create a name/value pair of all data entered in editable elements of form. This will create a 'FormModel' (concept of HTML 5) that is the name/value pair of all editable element's data. THis is submitted to with Form Post.
 2. Use Directvives to Manage HTML generation and UI during the Angular Component Execution
    1. What is Directive?
-      1. The Angular's concept for Reusable Functional UI 
+      1. The Angular's concept for Reusable Functional UI
       2. The Angular's concept for extending behavior of HTML element with custom logic
       3. The Angular's concept for Dynamically adding/removing DOM from HTML
    2. Types of Directives
       1. Component Directives, each component is a directive. This is functionaly reusable UI.
       2. Attribute Directive, used to set custom behavior for HTML element by creating custom attribute. e.g. ngModel
       3. Structural Directives, used to add/remove DOM Dynamically during HTML rendering
-         1. *ngFor --> Execute for..of loop to generate DOM elements on UI
-         2. *ngIf --> Execute if condition
-         3. *ngSwitch -- ngSwitchCase     
+         1. \*ngFor --> Execute for..of loop to generate DOM elements on UI
+         2. \*ngIf --> Execute if condition
+         3. \*ngSwitch -- ngSwitchCase
 3. Angular Reactive Forms
-   1. It is a form that is Bound to Model Class instead of using ngModel binding 
+   1. It is a form that is Bound to Model Class instead of using ngModel binding
    2. Uses ReactiveFormsModule form @angular/forms with following classes
       1. FormGroup
          1. A Group of FormControls where each FormControl is mapped to a plublic proeprty from Model class.
          2. FormControl also configured with Validation Rules (if any) those are applied for public properties of Model class
          3. FormControl is linked with editable UI element using 'formControlName' attribute.
-         4. formControlName represent the value entered in editable element that will be assignied to the corresponding property form the Model class. 
-      2. FormGroup is posted aka submitted with all data entered in the editable UI elements at Once. 
+         4. formControlName represent the value entered in editable element that will be assignied to the corresponding property form the Model class.
+      2. FormGroup is posted aka submitted with all data entered in the editable UI elements at Once.
       3. FormGroup and FormControl classes have 'value' proeprty, to read data entered in Form
-      4. FormGroup and FormControl classes have 'setValue()' method to assign values to it 
+      4. FormGroup and FormControl classes have 'setValue()' method to assign values to it
       5. Reactive Forms aka Model-Drive-Forms uses validations directly applied on Model class proeprties
          1. Validators class with its static methods
-            1. requred(AbstractControl)  and requiredTrue(AbstractControl)
-            2. min(number) / max(number) 
-            3. minLength(number) / maxLength(number)  
+            1. requred(AbstractControl) and requiredTrue(AbstractControl)
+            2. min(number) / max(number)
+            3. minLength(number) / maxLength(number)
             4. pattern(string | RegEx)
             5. email(AbstractControl)
             6. nullValidator(AbstractControl)
             7. compose(Validators Array), used for applying one or more validation rules on proeprties
          2. Note
-            1. If validation method accepts AbstractControl as input parameter then we need not to pass any value to the method because the value will be read from the UI element with which the property is bound using formControl. 
-      6. To create a custom validator the method must be static in a class and method can accepts either AbstractControl or premptive type as input parameter (only one type of parameter). If the value is valid then this method will return 'null' else it will return JSON object as error 
+            1. If validation method accepts AbstractControl as input parameter then we need not to pass any value to the method because the value will be read from the UI element with which the property is bound using formControl.
+      6. To create a custom validator the method must be static in a class and method can accepts either AbstractControl or premptive type as input parameter (only one type of parameter). If the value is valid then this method will return 'null' else it will return JSON object as error
 
 =====================================================================================================
 
 Using The Angular Component as the Reusable Function and UI Directive
+
 1. Create a component and use it as a Child Component inside the parent component
 2. The Child component will accept data from Parent Component by declaring a public get/set property in child componenent. This property will be decorated with @Input() decorator. This menas that the property will be used as property binding from parent to child.
 3. If child component wants to emit data to pernent component then in child component we must declare the EventEmitter<T> object that is decorated with the @Output() decorator
-   1.  EventEmitter<T> is a class that is used to emit an event from child component to paremnet component using its 'emit()' method. This is generic class and T represents the type of data to be emitted from child to parent. The emit(parameter) method accepts 'parameter', this is the value that will be emitted from child component to parent component.
-   2. The event declared using EventEmitter<T> is used for Event Binding in parenet component and the emitted data from child will be read by parent component using '$event' object. This is standard JavaScript object 
-
+   1. EventEmitter<T> is a class that is used to emit an event from child component to paremnet component using its 'emit()' method. This is generic class and T represents the type of data to be emitted from child to parent. The emit(parameter) method accepts 'parameter', this is the value that will be emitted from child component to parent component.
+   2. The event declared using EventEmitter<T> is used for Event Binding in parenet component and the emitted data from child will be read by parent component using '\$event' object. This is standard JavaScript object
 
 =========================================================================================================
 
-Assignment: 
+Assignment:
+
 1.  Validate EmpName for Required Validator and the EmpName must start from UpperCase character and should not have any special chracter. (Hint: Use regular expression)
 2.  Write a custom validator that will check uniqueness of the EmpNo
 3.  Create a Parement-Child component as Category/Product and list only Products for the selected category from Category Parent Component
     1.  CategoryPerentComponent
         1.  Create Category class and Categories array
-    2.  ProductChildComponent  
+    2.  ProductChildComponent
         1.  Create Product Class and Products array
     3.  Display products in ProductChild Component based on Selected Category Name from CategoryComponent
+
+======================================================================
+Angular Services
+
+1. Class decorated with @Injectable() decorator
+2. Contains logic that can be shared across components or the heavy load logic like
+   1. Utiliies
+   2. HTTP Calls
+   3. Socket Calls
+3. Service must be registered in Dependency Container provided by @NgModule using 'providers:[]' array alternatively we can directcly define the service registration using @Injectbale() object properties
+   1. Injectable has 'ProvidedIn' property with following possible values
+      1. root : The Service instance will be available across all components/directive/other services and also components/directives/ other service in external modules used in current angular application (The global Singleton instance)
+      2. platform: Make the service instance available across all Angular applications loaded in current browser (classic concept of Micro-Fronted in JavaScript apps)
+      3. any: Provides a unique instance in every module that injects the token.
+4. Angular Service for HTTP Calls
+   1. We need HttpClientModule from @angular/common/http
+   2. HttpClientModule class provides the Http Communciation Object model for Angular application as follows
+      1. Resolves the HttpClient class. This class is injected in Service class that performs HTTP calls.
+      2. Following are methods of HttpClient Class
+         1. get<T>() / post<T>() / put<T>() / delete<T>()
+         2. T is the response received from the REST API which could be
+            1. string, number, boolean, date, etc.
+            2. Object, JSON Array
+            3. BLOB, ArrayBuffer
+         3. All these methods returns Observable<T>
+            1. Observable is available from rxjs library
+            2. The Observbale has following method
+               1. subscribe(next,error)
+                  1. next is success callback function
+                  2. error is error callback function
+      3. Use HttpHeaders class for
+         1. Passing Headers information like
+            1. Content-Type
+            2. AUTHORIZATION
+            3. Any other custom headers
+
+============================================================================================================================================
+
+Create a Reactive Form for Performing CRUD operations using Http Calls to the REST API
