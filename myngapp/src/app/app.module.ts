@@ -13,6 +13,13 @@ import { TableDirectiveComponent } from './directives/app.table.component.direct
 import { DeptSenderComponent } from './components/masterdetailscommunication/app.deptsender.component';
 import { EmpReceiverComponent } from './components/masterdetailscommunication/app.empreceiver.component';
 import { HttpServiceComponent } from './components/httpservicecomponent/app.httpservice.component';
+import { SecureComponent } from './components/securecomponent/app.secure.component';
+import { ColorDirective } from './directives/app.color.directive';
+import { DirectiveComponent } from './components/directivecomponent/app.directive.component';
+import { ListEmployeesComponent } from './routingapp/app.listemployees.component';
+import { CreateEmployeeComponent } from './routingapp/app.createemployee.component';
+import { EditEmployeeComponent } from './routingapp/app.editemployee.component';
+import { MainRouterComponent } from './routingapp/app.mainrouting.component';
 
 // NgModule --> The decorator class for Angular Module with following
 // properties
@@ -37,14 +44,18 @@ import { HttpServiceComponent } from './components/httpservicecomponent/app.http
     EmployeeReactiveFormComponent,
     TableDirectiveComponent,
     DeptSenderComponent, EmpReceiverComponent,
-    HttpServiceComponent
+    HttpServiceComponent, SecureComponent,
+    ColorDirective, DirectiveComponent,
+    ListEmployeesComponent,
+    CreateEmployeeComponent,
+    EditEmployeeComponent, MainRouterComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule // load RouterModule with route table
   ],
   providers: [],
-  bootstrap: [HttpServiceComponent]
+  bootstrap: [MainRouterComponent]
 })
 export class AppModule { }

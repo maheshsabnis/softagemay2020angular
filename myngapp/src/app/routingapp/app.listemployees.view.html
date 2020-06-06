@@ -1,0 +1,26 @@
+<h2>List of Employees</h2>
+
+<input type="button" value="Create New Employee" (click)="create()" class="btn btn-warning">
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>EmpNo</th>
+            <th>EmpName</th>
+            <th>DeptName</th>
+            <th>Salary</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of emps">
+            <td>{{e.EmpNo}}</td>
+            <td>{{e.EmpName}}</td>
+            <td>{{e.DeptName}}</td>
+            <td>{{e.Salary}}</td>
+            <td>
+                <input type="button" value="Edit" (click)="edit(e.EmpNo)">
+            </td>
+        </tr>
+    </tbody>
+</table>

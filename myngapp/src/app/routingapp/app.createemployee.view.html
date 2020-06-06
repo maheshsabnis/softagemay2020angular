@@ -1,3 +1,4 @@
+<h2>Create a new Employee</h2>
 <div class="container">
     <form name="frmEmp">
         <div class="form-group">
@@ -25,19 +26,4 @@
         </div>
     </form>
 </div>
-<br>
-<div class="container">
-    <table class="table table-bordered table-dark">
-        <thead>
-            <tr>
-                <th *ngFor="let h of headers">{{h}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let e of emps" (click)="getSelectedEmployee(e)">
-                <!--Genarate each cell for the property of Employee class-->
-                <td *ngFor="let h of headers">{{e[h]}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<a [routerLink]="['']">Back to List</a>

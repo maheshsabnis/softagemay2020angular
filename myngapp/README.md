@@ -220,3 +220,65 @@ Angular Services
 ============================================================================================================================================
 
 Create a Reactive Form for Performing CRUD operations using Http Calls to the REST API
+
+=====================================================================================
+
+Creating Custom Attribute Directive 
+1. Used to define a custom behavior to the HTML UI Element
+2. Defines as a Property-Binding selector '[<SELECTOR-NAME>]'
+3. Class defining custom Attribute directive is decorated with @Directive() decorator
+4. The ctor() is injected with Rendere2 and ElementRef classes
+   1. Renderer2 class is used to define rendering after the directive is activated
+   2. ElementRef class is used to refere HTML element that will be affected with the directive.
+   3. BrowserModule resolves references for Renderer2 and ElementRef
+5. The class must have the @Input() decorated property, that will be used to accept data from UI element where the directive is applied. 
+6. The class must have a private method that contains the logic for directive
+7. The class must have public methods those will be calling private method and these public methods will be applied with @HostListener() decorator.
+   1. @HostListener('<EVENT-NAME>')
+      1. EVENT-NAME is the event that will activate the directive e.g. mouseenter/mouseleve/click
+         1. The directive will be activated whent the event is raised on UI element on which the custyom attribute directive is applied
+
+======================================================================================
+Angular Routing
+1. Used to define the Infra for SPA
+2. RouterModule
+   1. URL based Navigation to components using the Route Table(?)
+   2. Route Table
+      1. Component + URI information used to query to the table based in Request URL in Address bar 
+      2. Routes, the class that represent a Route Table. Each enrty (aka expression) is the 'Route' object
+         1. Route class has following properties
+            1. path : the URI
+            2. component: name of the component to be loaded
+            3. rediretTo: redirection based on condition
+            4. children: the Routes (a child/sub routing)
+            5. canActivate: The Route Guard, Role-Based-Routing
+            6. loadChildren: Laxy loading of the route. Loading the Module and its components at run time.
+            7. data: The data that will be used when guarged routing is used.  
+   3. Router class
+      1. Used to navigate to the component based on Events (aka explicit routing)
+         1. USes 'navigate()' method to route
+   4. ActivatedRoute
+      1. USed for Reading Route Parameter aka parameterized routing
+   5. [routerLink]
+      1. The Custom attribute directive that accepts the URI from ROute table to execute routing. This is applied to <a> tag
+         1. E.g. <a [routerLink]="['<URI FROM ROUTE TABLE>']"> 
+   6. <router-outlet></router-outlet>
+      1. The custom component directive that will load and render the route navigation component based on URI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
