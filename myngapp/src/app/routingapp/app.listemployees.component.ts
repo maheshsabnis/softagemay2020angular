@@ -21,7 +21,7 @@ export class ListEmployeesComponent implements OnInit {
   }
   edit(eno: number): void {
     console.log(`In List ${eno}`);
-     this.router.navigate(['edit', eno]);
+    this.router.navigate(['edit', eno]);
   }
 
   ngOnInit(): void {

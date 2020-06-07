@@ -20,6 +20,8 @@ import { ListEmployeesComponent } from './routingapp/app.listemployees.component
 import { CreateEmployeeComponent } from './routingapp/app.createemployee.component';
 import { EditEmployeeComponent } from './routingapp/app.editemployee.component';
 import { MainRouterComponent } from './routingapp/app.mainrouting.component';
+import { ListDepartmentsComponent } from './components/childcomponentforroute/app.listdepartments.component';
+import { PipeComponent } from './components/pipecomponent/app.pipe.component';
 
 // NgModule --> The decorator class for Angular Module with following
 // properties
@@ -48,7 +50,8 @@ import { MainRouterComponent } from './routingapp/app.mainrouting.component';
     ColorDirective, DirectiveComponent,
     ListEmployeesComponent,
     CreateEmployeeComponent,
-    EditEmployeeComponent, MainRouterComponent
+    EditEmployeeComponent, MainRouterComponent,
+    ListDepartmentsComponent, PipeComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,
@@ -56,6 +59,6 @@ import { MainRouterComponent } from './routingapp/app.mainrouting.component';
     AppRoutingModule // load RouterModule with route table
   ],
   providers: [],
-  bootstrap: [MainRouterComponent]
+  bootstrap: [PipeComponent]
 })
 export class AppModule { }

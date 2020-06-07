@@ -3,13 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListEmployeesComponent } from './routingapp/app.listemployees.component';
 import { CreateEmployeeComponent } from './routingapp/app.createemployee.component';
 import { EditEmployeeComponent } from './routingapp/app.editemployee.component';
+import { ListDepartmentsComponent } from './components/childcomponentforroute/app.listdepartments.component';
+import { FeatureModule } from '../lib/app.shared.module';
 
 
 // define route table
 const routes: Routes = [
   {path: '', component: ListEmployeesComponent},
-  {path: 'create', component: CreateEmployeeComponent},
+  {path: 'create', component: CreateEmployeeComponent,
+     children: [ // the sub-routing or child-routing
+       {path: 'depts', component: ListDepartmentsComponent}
+     ]},
   {path: 'edit/:id', component: EditEmployeeComponent},
+  {path: 'lazy', loadChildren:
+  () => import('./../lib/app.shared.module')
+  .then(m => m.FeatureModule)},
   {path: '**', redirectTo: ''} // for any other URI that create/edit
   // it will redirect to the default i.e. ListEmployeesComponent
 ];

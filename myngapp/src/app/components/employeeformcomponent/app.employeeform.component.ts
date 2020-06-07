@@ -13,12 +13,13 @@ export class EmployeeFormComponent implements OnInit {
   private logic: Logic;
   headers: Array<string>;
   depts =  Departments; // constant array is stored in public member of component
+  tax: number;
   constructor() {
      this.emp = new Employee(0, '', '', 0);
      this.emps = new Array<Employee>();
      this.logic = new Logic();
      this.headers  =new Array<string>();
-
+     this.tax = 0;
   }
   // write all such operations in this method those we cannot afford to write
   // in constructor
@@ -31,10 +32,15 @@ export class EmployeeFormComponent implements OnInit {
     console.log(this.headers);
     this.emps = this.logic.getEmployees();
   }
+  calculateTax(sal: number): number {
+     this.tax = sal * 0.2;
+     return this.tax;
+  }
   clear() : void {
     this.emp = new Employee(0, '', '', 0);
   }
   save(): void {
+    this.tax = this.emp.Salary * 0.2;
     this.emps = this.logic.saveEmployee(this.emp);
     console.log(`Data in Employees Array ${JSON.stringify(this.emps)}`);
   }

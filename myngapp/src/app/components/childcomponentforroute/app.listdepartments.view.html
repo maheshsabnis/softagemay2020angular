@@ -1,0 +1,15 @@
+<h3>List of Departments</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>DeptNo</td>
+            <td>DeptName</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dept of depts">
+            <td>{{dept.DeptNo}}</td>
+            <td>{{dept.DeptName}}</td>
+        </tr>
+    </tbody>
+</table>

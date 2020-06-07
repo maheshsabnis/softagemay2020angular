@@ -4,16 +4,20 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
+    // configure the App Module for testing
     TestBed.configureTestingModule({
+      // import all standard modules
       imports: [
         RouterTestingModule
       ],
+      // component(s) to be tested
       declarations: [
         AppComponent
       ],
-    }).compileComponents();
+    }).compileComponents(); // component with its HTML will be compiled
   }));
 
+  // test cases
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;

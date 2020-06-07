@@ -223,7 +223,8 @@ Create a Reactive Form for Performing CRUD operations using Http Calls to the RE
 
 =====================================================================================
 
-Creating Custom Attribute Directive 
+Creating Custom Attribute Directive
+
 1. Used to define a custom behavior to the HTML UI Element
 2. Defines as a Property-Binding selector '[<SELECTOR-NAME>]'
 3. Class defining custom Attribute directive is decorated with @Directive() decorator
@@ -231,7 +232,7 @@ Creating Custom Attribute Directive
    1. Renderer2 class is used to define rendering after the directive is activated
    2. ElementRef class is used to refere HTML element that will be affected with the directive.
    3. BrowserModule resolves references for Renderer2 and ElementRef
-5. The class must have the @Input() decorated property, that will be used to accept data from UI element where the directive is applied. 
+5. The class must have the @Input() decorated property, that will be used to accept data from UI element where the directive is applied.
 6. The class must have a private method that contains the logic for directive
 7. The class must have public methods those will be calling private method and these public methods will be applied with @HostListener() decorator.
    1. @HostListener('<EVENT-NAME>')
@@ -240,11 +241,12 @@ Creating Custom Attribute Directive
 
 ======================================================================================
 Angular Routing
+
 1. Used to define the Infra for SPA
-2. RouterModule
+2. RouterModule from @angular/router
    1. URL based Navigation to components using the Route Table(?)
    2. Route Table
-      1. Component + URI information used to query to the table based in Request URL in Address bar 
+      1. Component + URI information used to query to the table based in Request URL in Address bar
       2. Routes, the class that represent a Route Table. Each enrty (aka expression) is the 'Route' object
          1. Route class has following properties
             1. path : the URI
@@ -253,7 +255,7 @@ Angular Routing
             4. children: the Routes (a child/sub routing)
             5. canActivate: The Route Guard, Role-Based-Routing
             6. loadChildren: Laxy loading of the route. Loading the Module and its components at run time.
-            7. data: The data that will be used when guarged routing is used.  
+            7. data: The data that will be used when guarged routing is used.
    3. Router class
       1. Used to navigate to the component based on Events (aka explicit routing)
          1. USes 'navigate()' method to route
@@ -261,24 +263,59 @@ Angular Routing
       1. USed for Reading Route Parameter aka parameterized routing
    5. [routerLink]
       1. The Custom attribute directive that accepts the URI from ROute table to execute routing. This is applied to <a> tag
-         1. E.g. <a [routerLink]="['<URI FROM ROUTE TABLE>']"> 
+         1. E.g. <a [routerLink]="['<URI FROM ROUTE TABLE>']">
    6. <router-outlet></router-outlet>
       1. The custom component directive that will load and render the route navigation component based on URI
+   7. Lazy Loading
+      1. Loading the SharedModule aka FeatureModules at runtime using dynamic loading
+         1. Use 'loadChildern' property of Route class to set the path for FeatureModule to be loaded using lazyloading concept.
+         2. The Compiled JavaScript for Lazy loaded module will be loaded on demand
+      2. The FeatureModule can import the CommonModule and not the BrowserModule. (Note: In an Angular applciation we can have 'only one' instance of BrowserModule)
 
+=========================================================
+Unit Tested
 
+1. The testing object model for
+   1. setting testing environment
+      1. getTestBed() object that will be using platformBrowserDynamicTesting object to initialize the testing environment.
+      2. TestBed object, used to initliaze the Angular Module with its dependencies e.g. declartion, imports, providers to test
+         1. Components
+         2. Services
+         3. Directives
+         4. Pipes
+         5. Routes
+      3. async() test the Angular code asynchronously.
+   2. initialize testing module
+   3. Use the BDD using Jasmine and Karma Engine
+2. Angular CLI
+   1. Jasmine-core
+      1. Object model for
+         1. arrange, the objects for testing with data
+         2. act, perform the operations e.g. method call
+         3. assert, use 'expect()' object to verify the test
+   2. Karma
+      1. COmmand Line Engine that initialize the Browser Env. for executing tests
+         1. npm install -g karma
+         2. karma init
+            1. Wizard for creating karma.config.js
+               1. port
+               2. browser
+   3. Karma-jasmine
+      1. Load the Jasmine Testing Object Model in Browser process and execute tests
+   4. Jest
+      1. JSDOM Engine to test JavaSccript applications out of the browser process. 'Head-less' browser teating.
 
+====================================================================================
+Angular pipes
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+1. A mechanism to render the data in STRING TRANSFORMATION format based on the data binding expressions
+   1. Syntax
+      1. {{<PROPERTY>|<PIPE:<PARAMETER-FROMATS>>}}
+      2. e.g.
+         1. {{dateofbirth: date: "MM/dd/yy"}}
+   2. PIPES
+      1. date
+      2. currency
+      3. json
+      4. uppercase / lowercase
+      5. async

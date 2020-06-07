@@ -1,0 +1,13 @@
+<table class="table table-bordered table-striped">
+    <tbody>
+        <tr>
+            <td>
+                <input type="radio" name="r" value="Upper" (click)="changeCase('U')"> Upper
+            </td>
+            <td>
+                <input type="radio" name="r" value="Lower" (click)="changeCase('L')"> Lower
+            </td>
+        </tr>
+    </tbody>
+</table>
+<input type="text" [(ngModel)]="str" class="form-control">
